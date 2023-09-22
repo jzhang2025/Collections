@@ -67,7 +67,6 @@ public class MyStack
       for (int i = 0; i < size; i++){
           newArr[i] = stack[size - 1];
       }
-      
       return Arrays.toString(newArr);
     }
     
@@ -80,6 +79,7 @@ public class MyStack
         System.out.println(size()); 
         System.out.println(top()); 
         System.out.println(pop()); 
+        System.out.println(size());
         System.out.println(stack.toString()); 
     }
 }
