@@ -2,8 +2,8 @@
 /**
  * Write a description of class MyQueue here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Joshua Zhang 
+ * @version 9/27/23
  */
 public class MyQueue
 {
@@ -33,21 +33,21 @@ public class MyQueue
      */
     public void enqueue(int element)
     {
-       
+        queue[back] = element;
+        back++;
+        size++;
     }
     
     public int dequeue()
     {
-       return 0;
+        front++;
+        size--;
+        return queue[front];
     }
     
     public boolean isEmpty()
     {
-       if(size == 0){
-           return true;
-       }else{
-           return false;
-       }
+       return (size == 0);
     }
     public int front()
     {
@@ -59,11 +59,7 @@ public class MyQueue
     }
     public boolean isFull()
     {
-        if(size() >= queue.length){
-            return true;
-        }else{
-            return false;
-        }
+        return (size() >= queue.length);
     }
     public String toString()
     {

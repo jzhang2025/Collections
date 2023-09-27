@@ -1,49 +1,51 @@
 
 /**
- * Write a description of class MyStack here.
+ * Creates an array that uses Last In First Out (LIFO) to organize 
+ * an int array. 
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Joshua Zhang
+ * @version 9/27/23
  */
 import java.io.*;
 import java.util.*;
-public class MyStack
+public class MyStack<E>
 {
-    private int[] stack;
+    private E[] stack;
     private int size;
    
-    public void MyStack(int length)
+    public void MyStack()
     {
-       stack = new int[length];
        size = 0;
+       stack = (E[]) new Object[100];
     }
 
-
-    public void push(int element)
+    
+    public void push(E element) throws IndexOutOfBoundsException
     {
-        stack[size] = element;
-        size++;
+        if (size == 100){
+            throw new IndexOutOfBoundsException();
+        }else{
+            stack[size] = element;
+            size++;
+        }
     }
     
-    public int pop()
-    {
-       if (isEmpty() == true){
-           return 0;
-       }
-       size--;
-       return stack[size];
+    public E pop() throws IndexOutOfBoundsException
+    {   
+        if (isEmpty() == true){
+            throw new IndexOutOfBoundsException();
+        }else{
+        size--;
+        return stack[size];
+        }
     }
     
     public boolean isEmpty()
     {
-        if (size() == 0){
-            return true;
-        }else{
-            return false;
-        }
+        return (size() == 0);      
     }
     
-    public int top()
+    public E top()
     {
         return stack[size-1];
     }
@@ -55,32 +57,15 @@ public class MyStack
     
     public boolean isFull()
     {
-        if (size() >= stack.length){
-            return true;
-        }else{
-            return false;
-        }
+        return (size() >= stack.length);  
     }
     
     public String toString()
     {
-       int[] newArr = new int[size];
-    for (int i = 0; i < size; i++) {
-        newArr[i] = stack[i];
-    }
-    return Arrays.toString(newArr);
-    }
-    
-    public void testCase()
-    { 
-        System.out.println(isEmpty()); 
-        System.out.println(size()); 
-        push(3); 
-        push(4);
-        System.out.println(size()); 
-        System.out.println(top()); 
-        System.out.println(pop()); 
-        System.out.println(size());
-        System.out.println(Arrays.toString(stack)); 
+        String stackString = "";
+        for(int i = 0; i < size; i++){
+            stackString = stackString + stack[i];
+        }
+        return stackString; 
     }
 }
