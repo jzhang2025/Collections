@@ -15,6 +15,7 @@ public class MyStack
     public void MyStack(int length)
     {
        stack = new int[length];
+       size = 0;
     }
 
 
@@ -63,11 +64,11 @@ public class MyStack
     
     public String toString()
     {
-      int[] newArr = new int [size];
-      for (int i = 0; i < size; i++){
-          newArr[i] = stack[size - 1];
-      }
-      return Arrays.toString(newArr);
+       int[] newArr = new int[size];
+    for (int i = 0; i < size; i++) {
+        newArr[i] = stack[i];
+    }
+    return Arrays.toString(newArr);
     }
     
     public void testCase()
@@ -80,6 +81,6 @@ public class MyStack
         System.out.println(top()); 
         System.out.println(pop()); 
         System.out.println(size());
-        System.out.println(stack.toString()); 
+        System.out.println(Arrays.toString(stack)); 
     }
 }
