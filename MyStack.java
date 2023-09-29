@@ -42,9 +42,9 @@ public class MyStack<E> {
      * @return the element at the top of the stack
      * @throws IndexOutOfBoundsException if the stack is empty
      */
-    public E pop() throws IndexOutOfBoundsException {
+    public E pop() throws EmptyStackException {
         if (isEmpty()) {
-            throw new IndexOutOfBoundsException();
+            throw new EmptyStackException();
         } else {
             size--;
             return stack[size];
@@ -88,9 +88,9 @@ public class MyStack<E> {
     }
 
     /**
-     * Returns a string representation of the stack.
+     * Prints out a string listing the numbers in the stack
      *
-     * @return a string representing the stack
+     * @return a string list of the numbers in the stack
      */
     public String toString() {
         String stackString = "";

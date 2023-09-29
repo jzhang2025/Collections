@@ -39,4 +39,15 @@ public class testStack
         System.out.println(testStack.size());
         System.out.println(testStack.toString()); 
     }
+    
+    public static void tester(){
+        MyStack<String> stack = new MyStack();
+        
+        try {
+            System.out.println(stack.pop());
+        }catch (EmptyStackException e){
+            System.out.println("Tried to pop from empty stack");
+        }
+    }
 }
+
