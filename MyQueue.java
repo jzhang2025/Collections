@@ -1,68 +1,115 @@
-
 /**
- * Write a description of class MyQueue here.
+ * MyQueue class represents a generic queue data structure using an array.
+ * The queue follows the FIFO (First In, First Out) principle.
  *
- * @author Joshua Zhang 
+ * @param <E> The type of elements to be stored in the queue
+ * @author Joshua Zhang
  * @version 9/27/23
  */
-public class MyQueue
-{
-        
-    // instance variables - replace the example below with your own
-    private int[] queue;
+public class MyQueue<E> {
+    private E[] queue;
     private int back;
     private int front;
     private int size;
 
     /**
-     * Constructor for objects of class MyQueue
+     * Constructs a new Queue with a size of 100
+     * 
      */
-    public MyQueue(int length)
-    {
-        queue = new int[length];
+    public MyQueue() {
+        queue = (E[]) new Object[100];
         size = 0;
         back = 0;
         front = 0;
     }
 
     /**
-     * An example of a method - replace this comment with your own
+     * Enqueues an element into the queue
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * @param element The element to be added to the queue
+     * @throws IndexOutOfBoundsException if the queue is full
      */
-    public void enqueue(int element)
-    {
+    public void enqueue(E element) throws IndexOutOfBoundsException {
+        if (isFull()) {
+            throw new IndexOutOfBoundsException();
+        }
         queue[back] = element;
         back++;
         size++;
     }
-    
-    public int dequeue()
-    {
+
+    /**
+     * Dequeues an element from the queue.
+     *
+     * @return The dequeued element.
+     * @throws IndexOutOfBoundsException if the queue is empty 
+     */
+    public E dequeue() throws IndexOutOfBoundsException {
+        if (isEmpty()) {
+            throw new IndexOutOfBoundsException();
+        }
+        E element = queue[front];
+        queue[front] = null;
         front++;
         size--;
+        return element;
+    }
+
+    /**
+     * Checks if the queue is empty.
+     *
+     * @return True if the queue is empty, false otherwise.
+     */
+    public boolean isEmpty() {
+        return (size == 0);
+    }
+
+    /**
+     * Shows the number at the front of the queue
+     *
+     * @return The element at the front of the queue.
+     * @throws IndexOutOfBoundsException if the queue is empty.
+     */
+    public E front() throws IndexOutOfBoundsException {
+        if (isEmpty()) {
+            throw new IndexOutOfBoundsException();
+        }
         return queue[front];
     }
-    
-    public boolean isEmpty()
-    {
-       return (size == 0);
-    }
-    public int front()
-    {
-       return queue[front];
-    }
-    public int size()
-    {
+
+    /**
+     * Returns the size of the queue.
+     *
+     * @return The size of the queue.
+     */
+    public int size() {
         return size;
     }
-    public boolean isFull()
-    {
+
+    /**
+     * Checks if the queue is full
+     *
+     * @return True if the queue is full, false otherwise
+     */
+    public boolean isFull() {
         return (size() >= queue.length);
     }
-    public String toString()
-    {
-        return "";
+
+    /**
+     * Converts the queue to a String list of the numbers within the queue
+     *
+     * @return A string with commas seperating each number in the stack 
+     */
+    public String toString() {
+        String queueString = "";
+
+        for (int i = front; i < back; i++) {
+            queueString += queue[i];
+            if (i < back - 1) {
+                queueString += ", ";
+            }
+        }
+
+        return queueString;
     }
 }
