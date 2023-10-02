@@ -7,15 +7,7 @@
  */
 public class testLinkedList
 {
-    private MyLinkedList testList; 
 
-    /**
-     * Constructor for objects of class testLinkedList
-     */
-    public testLinkedList()
-    {
-  
-    }
 
     /**
      * An example of a method - replace this comment with your own
@@ -23,10 +15,17 @@ public class testLinkedList
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public static void test()
+    public void test()
     {
         MyLinkedList testList = new MyLinkedList();
         testList.addHead(3);
-        testList.addHead(2);
+        System.out.println(testList.removeHead());
+        testList.addTail(1);
+        System.out.println(testList.removeHead());
+        testList.addTail(2);
+        System.out.println(testList.removeHead());
+        testList.addTail(2);
+        
+        
     }
 }
