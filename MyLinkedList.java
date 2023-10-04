@@ -4,18 +4,15 @@ import java.util.NoSuchElementException;
  * Creates a Linked List data structure that can organize integers in nodes.
  * The code can add nodes to front, back, and also remove nodes from the front.
  * 
- * 
  * @author Joshua Zhang
- * @version 1.0
- *
- * @param <E> The type of elements held in the linked list.
+ * @version 10/4/23
  */
 public class MyLinkedList<E> {
     private Node<E> head;
     private int size;
 
     /**
-     * Constructs an empty linked list.
+     * Constructs a new empty LinkedList
      */
     public MyLinkedList() {
         head = null;
@@ -108,9 +105,9 @@ public class MyLinkedList<E> {
     }
 
     /**
-     * Returns a string representation of the linked list.
+     * Returns a string representation of the linked list from head to tail
      *
-     * @return A string representing the elements of the linked list.
+     * @return A string list showing all the numbers in the linked list
      */
     public String toString() {
         String listString = "";
@@ -118,7 +115,7 @@ public class MyLinkedList<E> {
         for (int i = 0; i < size; i++) {
             listString += temp.getData();
             temp = temp.getNext();
-            if (i < size - 1) {
+            if (i < size - 1) { //not if last element
                 listString += ", ";
             }
         }

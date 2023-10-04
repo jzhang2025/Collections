@@ -31,6 +31,7 @@ public class testLinkedList
         System.out.println(testList.getHead());
         testList.addHead(5);
         testList.addHead(5);
+        testList.addTail(4);
         System.out.println(testList.toString());
     }
 }
