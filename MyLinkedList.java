@@ -34,6 +34,25 @@ public class MyLinkedList<E> {
         }
         size++;
     }
+    
+    /**
+     * Adds a new element at the tail of the linked list.
+     *
+     * @param element The element to add.
+     */
+    public void addTail(E element) {
+        Node<E> newNode = new Node<>(element);
+        Node<E> temp = head;
+        if (head == null) {
+            head = newNode;
+        } else {
+            while (temp.getNext() != null) {
+                temp = temp.getNext();
+            }
+            temp.setNext(newNode);
+        }
+        size++;
+    }
 
     /**
      * Removes and returns the element at the head of the linked list.
@@ -83,25 +102,6 @@ public class MyLinkedList<E> {
      */
     public boolean isEmpty() {
         return (head == null);
-    }
-
-    /**
-     * Adds a new element at the tail of the linked list.
-     *
-     * @param element The element to add.
-     */
-    public void addTail(E element) {
-        Node<E> newNode = new Node<>(element);
-        Node<E> temp = head;
-        if (head == null) {
-            head = newNode;
-        } else {
-            while (temp.getNext() != null) {
-                temp = temp.getNext();
-            }
-            temp.setNext(newNode);
-        }
-        size++;
     }
 
     /**
