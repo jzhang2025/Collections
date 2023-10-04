@@ -1,84 +1,121 @@
 import java.util.NoSuchElementException;
 
 /**
- * Write a description of class MyLinkedList here.
+ * Creates a Linked List data structure that can organize integers in nodes.
+ * The code can add nodes to front, back, and also remove nodes from the front.
+ * 
+ * 
+ * @author Joshua Zhang
+ * @version 1.0
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @param <E> The type of elements held in the linked list.
  */
-public class MyLinkedList
-{
-    private Node head; 
+public class MyLinkedList<E> {
+    private Node<E> head;
     private int size;
 
     /**
-     * Constructor for objects of class MyLinkedList
+     * Constructs an empty linked list.
      */
-    public MyLinkedList(){
-        head = null; 
+    public MyLinkedList() {
+        head = null;
         size = 0;
     }
 
     /**
-     * An example of a method - replace this comment with your own
+     * Adds a new element at the head of the linked list.
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * @param element The element to add.
      */
-    public void addHead(int element){
-        Node newNode = new Node(element); 
-        if (head == null){
+    public void addHead(E element) {
+        Node<E> newNode = new Node<>(element);
+        if (head == null) {
             head = newNode;
-        }else{
+        } else {
             newNode.setNext(head);
             head = newNode;
         }
         size++;
     }
-    
-    public int removeHead() throws NoSuchElementException{
+
+    /**
+     * Removes and returns the element at the head of the linked list.
+     *
+     * @return The element at the head of the linked list.
+     * @throws NoSuchElementException if the linked list is empty.
+     */
+    public E removeHead() throws NoSuchElementException {
         if (head == null) {
             throw new NoSuchElementException();
-        }else{
-            Node temp = head;
+        } else {
+            Node<E> temp = head;
             head = head.getNext();
             temp.setNext(null);
             size--;
             return temp.getData();
         }
     }
-    
-    public int getHead(){
-        return head.getData(); 
+
+    /**
+     * Gets the element at the head of the linked list without removing it.
+     *
+     * @return The element at the head of the linked list.
+     * @throws NoSuchElementException if the linked list is empty.
+     */
+    public E getHead() throws NoSuchElementException {
+        if (head == null) {
+            throw new NoSuchElementException();
+        } else {
+            return head.getData();
+        }
     }
-    
-    public int size(){
-        return size; 
+
+    /**
+     * Returns the number of elements in the linked list.
+     *
+     * @return The number of elements in the linked list.
+     */
+    public int size() {
+        return size;
     }
-    
-    public boolean isEmpty(){
+
+    /**
+     * Checks if the linked list is empty.
+     *
+     * @return True if the linked list is empty, false otherwise.
+     */
+    public boolean isEmpty() {
         return (head == null);
     }
-    
-    public void addTail(int element){
-        Node newNode = new Node(element);
-        Node temp = head;
-        if (head == null){
+
+    /**
+     * Adds a new element at the tail of the linked list.
+     *
+     * @param element The element to add.
+     */
+    public void addTail(E element) {
+        Node<E> newNode = new Node<>(element);
+        Node<E> temp = head;
+        if (head == null) {
             head = newNode;
-        }else{
-            while (temp.getNext() != null){
+        } else {
+            while (temp.getNext() != null) {
                 temp = temp.getNext();
             }
             temp.setNext(newNode);
-            size++;
         }
-        
+        size++;
     }
-    
+
+    /**
+     * Returns a string representation of the linked list.
+     *
+     * @return A string representing the elements of the linked list.
+     */
     public String toString() {
         String listString = "";
-        Node temp = head;
-        for (int i = 0 ; i < size; i++) {
+        Node<E> temp = head;
+        for (int i = 0; i < size; i++) {
             listString += temp.getData();
             temp = temp.getNext();
             if (i < size - 1) {

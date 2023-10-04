@@ -1,48 +1,56 @@
-
 /**
- * Write a description of class Node here.
+ * Represents a node that can store data and link with other nodes.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @param <E> The type of data that the node holds.
+ * @author Joshua Zhang
+ * @version 1.0
  */
-public class Node
-{
-    private int data;
-    private Node next;
+public class Node<E> {
+    private E data;
+    private Node<E> next;
 
     /**
-     * Constructor for objects of class Node
+     * Constructs a node with the specified data.
+     *
+     * @param element The data to be stored in the node.
      */
-    public Node(int element)
-    {
-        data = element;        
+    public Node(E element) {
+        data = element;
     }
 
     /**
-     * An example of a method - replace this comment with your own
+     * Gets the data stored in this node.
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * @return The data stored in this node.
      */
-    
-    
-    public int getData()
-    {
+    public E getData() {
         return data;
     }
 
-    public void setData(int y)
-    {
+    /**
+     * Sets the data to be stored in this node.
+     *
+     * @param y The data to be stored in this node.
+     */
+    public void setData(E y) {
         data = y;
     }
-    
-    public Node getNext()
-    {
+
+    /**
+     * Gets the next node linked to this node.
+     *
+     * @return The next node linked to this node.
+     */
+    public Node<E> getNext() {
         return next;
     }
-    
-    public void setNext(Node y)
-    {
-        next = y; 
+
+    /**
+     * Sets the next node to be linked to this node.
+     *
+     * @param y The next node to be linked to this node.
+     */
+    public void setNext(Node<E> y) {
+        next = y;
     }
 }

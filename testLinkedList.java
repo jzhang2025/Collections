@@ -25,7 +25,12 @@ public class testLinkedList
         testList.addTail(2);
         System.out.println(testList.removeHead());
         testList.addTail(2);
-        
-        
+        System.out.println(testList.isEmpty());
+        testList.addHead(3);
+        System.out.println(testList.size());
+        System.out.println(testList.getHead());
+        testList.addHead(5);
+        testList.addHead(5);
+        System.out.println(testList.toString());
     }
 }
