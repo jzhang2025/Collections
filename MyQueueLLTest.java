@@ -29,16 +29,7 @@ public class MyQueueLLTest
         
     }
     
-    public static MyQueueLL<Integer> reverseQueue(MyQueueLL<Integer> originalQueue) {
-        MyQueueLL<Integer> reversedQueue = new MyQueueLL<>();
-
-        while (!originalQueue.isEmpty()) {
-            Integer element = originalQueue.dequeue();
-            reversedQueue.enqueue(element);
-        }
-
-        return reversedQueue;
-    }
+   
 
 
 }
