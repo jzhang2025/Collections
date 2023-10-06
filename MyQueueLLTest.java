@@ -29,7 +29,18 @@ public class MyQueueLLTest
         
     }
     
-   
+    public void reverseData() {
+        MyQueueLL queue = new MyQueueLL();
+        MyStackLL stack = new MyStackLL();
+        
+        queue.enqueue(1);
+        queue.enqueue(2);
+        queue.enqueue(3);
+        System.out.println(queue);
+        
+        while (queue != 
+        
+    }
 
 
 }
