@@ -1,67 +1,86 @@
-
 /**
- * Write a description of class MyStackLL here.
+ * MyStackLL is a generic stack implementation using a linked list.
  *
- * @author Joshua Zhang 
- * @version (a version number or a date)
+ * @author Joshua Zhang
+ * @version 10/6/23
  */
 public class MyStackLL<E>
 {
-    private MyLinkedList<E> stack;
-    private Node<E> head;
-    private int size;
+    private MyLinkedList<E> stack; 
+    private int size; 
+
     /**
-     * Constructor for objects of class MyStackLL
+     * Initializes an empty stack.
      */
     public MyStackLL()
     {
-        head = null;
-        MyLinkedList<E> stack = new MyLinkedList<E>();
+        stack = new MyLinkedList<>();
         size = 0;
     }
 
     /**
-     * An example of a method - replace this comment with your own
+     * Pushes an element onto the top of the stack.
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * @param element The element to be pushed on the stack
      */
     public void push(E element) {
         stack.addHead(element);
         size++;
     }
-    
+
+    /**
+     * Pops an element from the top of the stack.
+     *
+     * @return The element popped from the stack.
+     */
     public E pop() {
         size--;
-        return stack.removeHead(); 
+        return stack.removeHead();
     }
-    
+
+    /**
+     * Retrieves the element at the top of the stack without removing it.
+     *
+     * @return The element at the top of the stack.
+     */
     public E top() {
         return stack.getHead();
     }
-    
+
+    /**
+     * Returns the number of elements in the stack
+     *
+     * @return The size of the stack.
+     */
     public int size() {
         return size;
     }
-    
+
+    /**
+     * Checks if the stack is empty.
+     *
+     * @return True if the stack is empty, false otherwise.
+     */
     public boolean isEmpty() {
         return size() == 0;
     }
-    
+
+    /**
+     * Checks if the stack is full (Will never be full because a Linked List
+     * is dynamic).
+     *
+     * @return Always returns false for a linked list-based stack.
+     */
     public boolean isFull() {
         return false;
     }
-    
+
+    /**
+     * Creates a list of all the numbers in the stack top to bottom
+     *
+     * @return A string representing the elements in the stack.
+     */
     public String toString() {
-        String listString = "";
-        Node<E> temp = head;
-        for (int i = 0; i < size; i++) {
-            listString += temp.getData();
-            temp = temp.getNext();
-            if (i < size - 1) { //not if last element
-                listString += ", ";
-            }
-        }
-        return listString;
+        return stack.toString();
     }
 }
