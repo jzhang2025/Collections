@@ -38,8 +38,13 @@ public class MyQueueLLTest
         queue.enqueue(3);
         System.out.println(queue);
         
-        while (queue != 
-        
+        while (queue.isEmpty() != true) {
+            stack.push(queue.dequeue());
+        }
+        while (stack.isEmpty() != true) {
+            queue.enqueue(stack.pop());
+        }
+        System.out.println(queue);
     }
 
 
