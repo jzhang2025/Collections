@@ -56,9 +56,4 @@ public class MyStackLLTest
 
     return stack.isEmpty();
     }
-    
-    public void testMethod() {
-        
-    }
-
 }

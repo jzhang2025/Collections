@@ -1,4 +1,3 @@
-
 /**
  * Write a description of class MyQueueLLTest here.
  *
@@ -38,10 +37,10 @@ public class MyQueueLLTest
         queue.enqueue(3);
         System.out.println(queue);
         
-        while (queue.isEmpty() != true) {
+        while (!queue.isEmpty()) {
             stack.push(queue.dequeue());
         }
-        while (stack.isEmpty() != true) {
+        while (!stack.isEmpty()) {
             queue.enqueue(stack.pop());
         }
         System.out.println(queue);
