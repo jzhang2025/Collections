@@ -9,6 +9,7 @@ import java.util.NoSuchElementException;
  */
 public class MyLinkedList<E> {
     private Node<E> head;
+    private Node<E> tail;
     private int size;
 
     /**
@@ -16,6 +17,7 @@ public class MyLinkedList<E> {
      */
     public MyLinkedList() {
         head = null;
+        tail = null;
         size = 0;
     }
 
@@ -42,14 +44,15 @@ public class MyLinkedList<E> {
      */
     public void addTail(E element) {
         Node<E> newNode = new Node<>(element);
-        Node<E> temp = head;
+        
         if (head == null) {
             head = newNode;
-        } else {
-            while (temp.getNext() != null) {
-                temp = temp.getNext();
-            }
-            temp.setNext(newNode);
+            tail = head;
+        } 
+        if (tail == head){
+            tail = newNode;
+        }else{
+            tail.setNext(newNode);
         }
         size++;
     }
@@ -84,6 +87,10 @@ public class MyLinkedList<E> {
         } else {
             return head.getData();
         }
+    }
+    
+    public E get(int index) {
+        
     }
 
     /**
