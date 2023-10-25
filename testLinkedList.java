@@ -34,4 +34,16 @@ public class testLinkedList
         testList.addTail(4);
         System.out.println(testList.toString());
     }
+    
+    public void test2() {
+        MyLinkedList testList = new MyLinkedList();
+        testList.addHead(3);
+        testList.addTail(2);
+        testList.addHead(4);
+        testList.addTail(1);
+        System.out.println(testList.remove(2));
+        System.out.println(testList.toString());
+        testList.add(1,6);
+        System.out.println(testList.toString());
+    }
 }

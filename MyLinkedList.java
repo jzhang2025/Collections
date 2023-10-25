@@ -30,6 +30,7 @@ public class MyLinkedList<E> {
         Node<E> newNode = new Node<>(element);
         if (head == null) {
             head = newNode;
+            tail = newNode;
         } else {
             newNode.setNext(head);
             head = newNode;
@@ -46,13 +47,10 @@ public class MyLinkedList<E> {
         Node<E> newNode = new Node<>(element);
         
         if (head == null) {
-            head = newNode;
-            tail = head;
-        } 
-        if (tail == head){
-            tail = newNode;
-        }else{
+            addHead(element);
+        } else {
             tail.setNext(newNode);
+            tail = newNode;
         }
         size++;
     }
@@ -90,9 +88,37 @@ public class MyLinkedList<E> {
     }
     
     public E get(int index) {
-        
+        Node<E> temp = head;
+        for (int i = 0; i < index; i++){
+            temp = temp.getNext();
+        }
+        return temp.getData();
     }
 
+    public E remove(int index) {
+        Node<E> pointer = head;
+        Node<E> removedNode;
+        for (int i = 0; i < index - 1; i++) {
+            pointer = pointer.getNext();
+        }
+        removedNode = pointer.getNext();
+        pointer.setNext(removedNode.getNext());
+        size--;
+        return removedNode.getData();
+    }
+    
+    public void add(int index, E element) {
+        Node<E> temp = head; 
+        Node<E> newNode = head;
+        for (int i = 0; i < index - 1; i++) {
+            temp = temp.getNext();
+            newNode = newNode.getNext();
+        }
+        newNode.setData(element);
+        newNode.setNext(newNode.getNext());
+        temp.setNext(newNode);
+    }
+    
     /**
      * Returns the number of elements in the linked list.
      *
