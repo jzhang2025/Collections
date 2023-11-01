@@ -5,7 +5,7 @@ import java.util.NoSuchElementException;
  * The code can add nodes to front, back, and also remove nodes from the front.
  * 
  * @author Joshua Zhang
- * @version 10/4/23
+ * @version 11/1/23
  */
 public class MyLinkedList<E extends Comparable<E>>
 {
