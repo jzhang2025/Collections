@@ -114,8 +114,11 @@ public class MyLinkedList<E extends Comparable<E>>
      * @throws IndexOutOfBoundsException if the index is out of bounds.
      */
     public E remove(int index) throws IndexOutOfBoundsException {
-        if (index < 0 || index > size) {
+        if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
+        }
+        if (index == 0) {
+            removeHead();        
         }
         Node<E> pointer = head;
         Node<E> removedNode;
@@ -136,7 +139,7 @@ public class MyLinkedList<E extends Comparable<E>>
      * @throws IndexOutOfBoundsException if the index is out of bounds.
      */
     public void add(int index, E element) throws IndexOutOfBoundsException {
-        if (index < 0 || index > size) {
+        if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
         }
     
