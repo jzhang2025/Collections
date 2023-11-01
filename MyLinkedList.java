@@ -45,15 +45,15 @@ public class MyLinkedList<E extends Comparable<E>>
      * @param element The element to add.
      */
     public void addTail(E element) {
-        Node<E> newNode = new Node<>(element);
         
         if (head == null) {
             addHead(element);
         } else {
+            Node<E> newNode = new Node<>(element);
             tail.setNext(newNode);
             tail = newNode;
+            size++;
         }
-        size++;
     }
 
     /**
@@ -141,7 +141,7 @@ public class MyLinkedList<E extends Comparable<E>>
         }
     
         if (index == 0) {
-            Node<E> newNode = new Node<>(element);
+            Node<E> newNode = new Node<E>(element);
             newNode.setNext(head);
             head = newNode;
         } else {
@@ -149,7 +149,7 @@ public class MyLinkedList<E extends Comparable<E>>
             for (int i = 0; i < index - 1; i++) {
                 temp = temp.getNext();
             }
-            Node<E> newNode = new Node<>(element);
+            Node<E> newNode = new Node<E>(element);
             newNode.setNext(temp.getNext());
             temp.setNext(newNode);
         }
