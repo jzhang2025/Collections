@@ -14,7 +14,7 @@ public class MyStackLL<E>
      */
     public MyStackLL()
     {
-        stack = new MyLinkedList<>();
+        stack = new MyLinkedList<E>();
         size = 0;
     }
 

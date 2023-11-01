@@ -49,7 +49,7 @@ public class MyLinkedList<E extends Comparable<E>>
         if (head == null) {
             addHead(element);
         } else {
-            Node<E> newNode = new Node<>(element);
+            Node<E> newNode = new Node<E>(element);
             tail.setNext(newNode);
             tail = newNode;
             size++;
@@ -118,17 +118,21 @@ public class MyLinkedList<E extends Comparable<E>>
             throw new IndexOutOfBoundsException();
         }
         if (index == 0) {
-            removeHead();        
+            return removeHead();        
+        } else {
+            Node<E> pointer = head;
+            Node<E> removedNode;
+            for (int i = 0; i < index - 1; i++) {
+                pointer = pointer.getNext();
+            }
+            removedNode = pointer.getNext();
+            pointer.setNext(removedNode.getNext());
+            if (pointer.getNext() == null) {
+                tail = pointer;
+            }
+            size--;
+            return removedNode.getData();
         }
-        Node<E> pointer = head;
-        Node<E> removedNode;
-        for (int i = 0; i < index - 1; i++) {
-            pointer = pointer.getNext();
-        }
-        removedNode = pointer.getNext();
-        pointer.setNext(removedNode.getNext());
-        size--;
-        return removedNode.getData();
     }
     
     /**
@@ -139,7 +143,7 @@ public class MyLinkedList<E extends Comparable<E>>
      * @throws IndexOutOfBoundsException if the index is out of bounds.
      */
     public void add(int index, E element) throws IndexOutOfBoundsException {
-        if (index < 0 || index >= size) {
+        if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException();
         }
     
@@ -147,6 +151,10 @@ public class MyLinkedList<E extends Comparable<E>>
             Node<E> newNode = new Node<E>(element);
             newNode.setNext(head);
             head = newNode;
+            size++;
+        } else if (index == size) {
+            addTail(element);
+            System.out.println(size + "final");
         } else {
             Node<E> temp = head;
             for (int i = 0; i < index - 1; i++) {
@@ -155,9 +163,10 @@ public class MyLinkedList<E extends Comparable<E>>
             Node<E> newNode = new Node<E>(element);
             newNode.setNext(temp.getNext());
             temp.setNext(newNode);
+            size++;
         }
     
-        size++;
+        
     }
     
     /**
