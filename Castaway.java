@@ -42,7 +42,7 @@ public class Castaway implements Comparable<Castaway>
     }
 
     
-    public int compareTo(Castaway other) {
+    public int @Override compareTo(Castaway other) {
          return Integer.compare(personScore, other.personScore);
     }
     

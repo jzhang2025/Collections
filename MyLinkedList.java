@@ -51,7 +51,7 @@ public class MyLinkedList<E extends Comparable<E>>
         } else {
             Node<E> newNode = new Node<E>(element);
             tail.setNext(newNode);
-            tail = newNode;
+            tail = newNode; 
             size++;
         }
     }
@@ -148,10 +148,7 @@ public class MyLinkedList<E extends Comparable<E>>
         }
     
         if (index == 0) {
-            Node<E> newNode = new Node<E>(element);
-            newNode.setNext(head);
-            head = newNode;
-            size++;
+            addHead(element);
         } else if (index == size) {
             addTail(element);
             System.out.println(size + "final");
