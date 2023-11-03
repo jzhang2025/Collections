@@ -72,7 +72,6 @@ public class MyLinkedList<E extends Comparable<E>>
             addHead(element);
         } else if (index == size) {
             addTail(element);
-            System.out.println(size + "final");
         } else {
             Node<E> temp = head;
             for (int i = 0; i < index - 1; i++) {
@@ -162,8 +161,11 @@ public class MyLinkedList<E extends Comparable<E>>
     
         Node<E> current = head;
         Node<E> previous = null;
-    
         while (current != null && !current.getData().equals(element)) {
+            E temp = current.getData();
+            System.out.println(temp.equals(element));
+            System.out.println(temp);
+            System.out.println(element);
             previous = current;
             current = current.getNext();
         }
