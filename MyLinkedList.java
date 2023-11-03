@@ -55,7 +55,47 @@ public class MyLinkedList<E extends Comparable<E>>
             size++;
         }
     }
+    
+    /**
+     * Inserts an element at the specified index in the list.
+     *
+     * @param index The index at which to insert the element.
+     * @param element The element to insert.
+     * @throws IndexOutOfBoundsException if the index is out of bounds.
+     */
+    public void add(int index, E element) throws NoSuchElementException {
+        if (index < 0 || index > size) {
+            throw new NoSuchElementException();
+        }
+    
+        if (index == 0) {
+            addHead(element);
+        } else if (index == size) {
+            addTail(element);
+            System.out.println(size + "final");
+        } else {
+            Node<E> temp = head;
+            for (int i = 0; i < index - 1; i++) {
+                temp = temp.getNext();
+            }
+            Node<E> newNode = new Node<E>(element);
+            newNode.setNext(temp.getNext());
+            temp.setNext(newNode);
+            size++;
+        }
+    
+        
+    }
 
+    /**
+     * Adds an element to the end of the list.
+     *
+     * @param element The element to add to the list.
+     */
+    public void add(E element) {
+        addTail(element);
+    }
+    
     /**
      * Removes and returns the element at the head of the linked list.
      *
@@ -74,6 +114,70 @@ public class MyLinkedList<E extends Comparable<E>>
         }
     }
 
+    /**
+     * Removes and returns the element at the specified index in the list.
+     *
+     * @param index The index of the element to remove.
+     * @return The removed element.
+     * @throws IndexOutOfBoundsException if the index is out of bounds.
+     */
+    public E remove(int index) throws NoSuchElementException {
+        if (index < 0 || index >= size) {
+            throw new NoSuchElementException();
+        }
+        if (index == 0) {
+            return removeHead();        
+        } else {
+            Node<E> pointer = head;
+            Node<E> removedNode;
+            for (int i = 0; i < index - 1; i++) {
+                pointer = pointer.getNext();
+            }
+            removedNode = pointer.getNext();
+            pointer.setNext(removedNode.getNext());
+            if (pointer.getNext() == null) {
+                tail = pointer;
+            }
+            size--;
+            return removedNode.getData();
+        }
+    }
+    
+    /**
+     * Removes and returns the first occurrence 
+     * of the specified element in the list.
+     *
+     * @param element The element to remove.
+     * @return The removed element.
+     * @throws NoSuchElementException if the element is not found in the list.
+     */
+    public E remove(E element) {
+        if (isEmpty()) {
+            return null;
+        }
+    
+        if (head.getData().equals(element)) {
+            return removeHead();
+        }
+    
+        Node<E> current = head;
+        Node<E> previous = null;
+    
+        while (current != null && !current.getData().equals(element)) {
+            previous = current;
+            current = current.getNext();
+        }
+    
+        if (current == null) {
+            return null;
+        }
+    
+        previous.setNext(current.getNext());
+        size--;
+        return current.getData();
+    }
+
+    
     /**
      * Gets the element at the head of the linked list without removing it.
      *
@@ -95,9 +199,9 @@ public class MyLinkedList<E extends Comparable<E>>
      * @return The element at the specified index.
      * @throws IndexOutOfBoundsException if the index is out of bounds.
      */
-    public E get(int index) throws IndexOutOfBoundsException {
+    public E get(int index) throws NoSuchElementException {
         if (index < 0 || index > size) {
-            throw new IndexOutOfBoundsException();
+            throw new NoSuchElementException();
         }
         Node<E> temp = head;
         for (int i = 0; i < index; i++){
@@ -106,74 +210,6 @@ public class MyLinkedList<E extends Comparable<E>>
         return temp.getData();
     }
     
-    /**
-     * Removes and returns the element at the specified index in the list.
-     *
-     * @param index The index of the element to remove.
-     * @return The removed element.
-     * @throws IndexOutOfBoundsException if the index is out of bounds.
-     */
-    public E remove(int index) throws IndexOutOfBoundsException {
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException();
-        }
-        if (index == 0) {
-            return removeHead();        
-        } else {
-            Node<E> pointer = head;
-            Node<E> removedNode;
-            for (int i = 0; i < index - 1; i++) {
-                pointer = pointer.getNext();
-            }
-            removedNode = pointer.getNext();
-            pointer.setNext(removedNode.getNext());
-            if (pointer.getNext() == null) {
-                tail = pointer;
-            }
-            size--;
-            return removedNode.getData();
-        }
-    }
-    
-    /**
-     * Inserts an element at the specified index in the list.
-     *
-     * @param index The index at which to insert the element.
-     * @param element The element to insert.
-     * @throws IndexOutOfBoundsException if the index is out of bounds.
-     */
-    public void add(int index, E element) throws IndexOutOfBoundsException {
-        if (index < 0 || index > size) {
-            throw new IndexOutOfBoundsException();
-        }
-    
-        if (index == 0) {
-            addHead(element);
-        } else if (index == size) {
-            addTail(element);
-            System.out.println(size + "final");
-        } else {
-            Node<E> temp = head;
-            for (int i = 0; i < index - 1; i++) {
-                temp = temp.getNext();
-            }
-            Node<E> newNode = new Node<E>(element);
-            newNode.setNext(temp.getNext());
-            temp.setNext(newNode);
-            size++;
-        }
-    
-        
-    }
-    
-    /**
-     * Adds an element to the end of the list.
-     *
-     * @param element The element to add to the list.
-     */
-    public void add(E element) {
-        addTail(element);
-    }
     
     /**
      * Sets the element at the specified index to the given element.
@@ -182,9 +218,9 @@ public class MyLinkedList<E extends Comparable<E>>
      * @param element The new element to set.
      * @throws IndexOutOfBoundsException if the index is out of bounds.
      */
-    public void set(int index, E element) throws IndexOutOfBoundsException {
+    public void set(int index, E element) throws NoSuchElementException {
         if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException();
+            throw new NoSuchElementException();
         }
         Node<E> temp = head;
         for (int i = 0; i < index; i++) {
@@ -193,39 +229,6 @@ public class MyLinkedList<E extends Comparable<E>>
         temp.setData(element);
     }
     
-    /**
-     * Removes and returns the first occurrence 
-     * of the specified element in the list.
-     *
-     * @param element The element to remove.
-     * @return The removed element.
-     * @throws NoSuchElementException if the element is not found in the list.
-     */
-    public E remove(E element) throws NoSuchElementException {
-        if (isEmpty()) {
-            throw new NoSuchElementException();
-        }
-    
-        if (head.getData().equals(element)) {
-            return removeHead();
-        }
-    
-        Node<E> current = head;
-        Node<E> previous = null;
-    
-        while (current != null && !current.getData().equals(element)) {
-            previous = current;
-            current = current.getNext();
-        }
-    
-        if (current == null) {
-            throw new NoSuchElementException();
-        }
-    
-        previous.setNext(current.getNext());
-        size--;
-        return current.getData();
-    }
     
     /**
      * Inserts an element into the list in sorted order 

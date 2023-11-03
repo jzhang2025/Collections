@@ -40,9 +40,8 @@ public class Castaway implements Comparable<Castaway>
         gender = personGender;
         
     }
-
     
-    public int @Override compareTo(Castaway other) {
+    public int compareTo(Castaway other) {
          return Integer.compare(personScore, other.personScore);
     }
     
