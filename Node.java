@@ -7,6 +7,7 @@
 public class Node<E> {
     private E data;
     private Node<E> next;
+    private Node<E> prev;
 
     /**
      * Constructs a node with the specified data.
@@ -51,5 +52,13 @@ public class Node<E> {
      */
     public void setNext(Node<E> element) {
         next = element;
+    }
+    
+    public Node<E> getPrev() {
+        return prev;
+    }
+    
+    public void setPrev(Node<E> element) {
+        prev = element;
     }
 }

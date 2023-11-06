@@ -35,7 +35,8 @@ public class Castaway implements Comparable<Castaway>
          
     }
     
-    public boolean equals(Castaway other) {
+    @Override
+    public boolean equals(Object other) {
         return (this.compareTo(other) == 0);
     }
     

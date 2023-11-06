@@ -139,4 +139,9 @@ public class testLinkedList
         
        
     }
+    
+    public void test3() {
+        MyLinkedList testList = new MyLinkedList();
+        System.out.println(testList.toString());
+    }
 }
