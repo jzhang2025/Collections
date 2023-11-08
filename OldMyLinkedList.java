@@ -7,7 +7,7 @@ import java.util.NoSuchElementException;
  * @author Joshua Zhang
  * @version 11/1/23
  */
-public class DoublyMyLinkedList<E extends Comparable<E>>
+public class OldMyLinkedList<E extends Comparable<E>>
 {
     private Node<E> head;
     private Node<E> tail;
@@ -16,7 +16,7 @@ public class DoublyMyLinkedList<E extends Comparable<E>>
     /**
      * Constructs a new empty LinkedList
      */
-    public DoublyMyLinkedList() {
+    public OldMyLinkedList() {
         head = null;
         tail = null;
         size = 0;

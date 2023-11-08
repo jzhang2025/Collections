@@ -34,6 +34,7 @@ public class MyLinkedList<E extends Comparable<E>>
             tail = newNode;
         } else {
             newNode.setNext(head);
+            head.setPrev(newNode);
             head = newNode;
         }
         size++;
@@ -51,6 +52,7 @@ public class MyLinkedList<E extends Comparable<E>>
         } else {
             Node<E> newNode = new Node<E>(element);
             tail.setNext(newNode);
+            newNode.setPrev(tail);
             tail = newNode; 
             size++;
         }
@@ -75,11 +77,13 @@ public class MyLinkedList<E extends Comparable<E>>
         } else {
             Node<E> temp = head;
             for (int i = 0; i < index - 1; i++) {
+                temp.setPrev(temp);
                 temp = temp.getNext();
             }
             Node<E> newNode = new Node<E>(element);
             newNode.setNext(temp.getNext());
             temp.setNext(newNode);
+            newNode.setPrev(temp);
             size++;
         }
     
@@ -108,6 +112,7 @@ public class MyLinkedList<E extends Comparable<E>>
             Node<E> temp = head;
             head = head.getNext();
             temp.setNext(null);
+            head.setPrev(null);
             size--;
             return temp.getData();
         }
@@ -134,6 +139,7 @@ public class MyLinkedList<E extends Comparable<E>>
             }
             removedNode = pointer.getNext();
             pointer.setNext(removedNode.getNext());
+            pointer.getNext().setPrev(pointer);
             if (pointer.getNext() == null) {
                 tail = pointer;
             }

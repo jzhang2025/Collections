@@ -17,7 +17,7 @@ public class testLinkedList
      */
     public void test()
     {
-        MyLinkedList testList = new MyLinkedList();
+        OldMyLinkedList testList = new OldMyLinkedList();
         testList.addHead(3);
         System.out.println(testList.removeHead());
         testList.addTail(1);
@@ -36,7 +36,7 @@ public class testLinkedList
     }
     
     public void test2() {
-        MyLinkedList testList = new MyLinkedList();
+        OldMyLinkedList testList = new OldMyLinkedList();
         testList.addHead(3);
         testList.addTail(2);
         testList.addHead(4);
@@ -48,7 +48,7 @@ public class testLinkedList
     }
     
      public static void testLL() {
-        MyLinkedList<Integer> list = new MyLinkedList<Integer>();
+        OldMyLinkedList<Integer> list = new OldMyLinkedList<Integer>();
         list.addHead(1);
         list.addHead(2);
         System.out.println(list.size());
@@ -123,7 +123,7 @@ public class testLinkedList
         if (!list.toString().equals("3, 4, 9")) {
             System.out.println("Failed remove element " + list.toString());
         }
-        MyLinkedList<Integer> listSorted = new MyLinkedList<Integer>();
+        OldMyLinkedList<Integer> listSorted = new OldMyLinkedList<Integer>();
         listSorted.insertSorted(6);
         listSorted.insertSorted(2);
         listSorted.insertSorted(8);
@@ -141,7 +141,7 @@ public class testLinkedList
     }
     
     public void test3() {
-        MyLinkedList testList = new MyLinkedList();
+        OldMyLinkedList testList = new OldMyLinkedList();
         System.out.println(testList.toString());
     }
 }
