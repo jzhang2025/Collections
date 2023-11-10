@@ -29,7 +29,7 @@ public class MyLinkedList<E extends Comparable<E>>
      */
     public void addHead(E element) {
         Node<E> newNode = new Node<>(element);
-        if (head == null) {
+        if (head == null) { 
             head = newNode;
             tail = newNode;
         } else {
@@ -63,7 +63,7 @@ public class MyLinkedList<E extends Comparable<E>>
      *
      * @param index The index at which to insert the element.
      * @param element The element to insert.
-     * @throws IndexOutOfBoundsException if the index is out of bounds.
+     * @throws NoSuchElementException if the index is out of bounds.
      */
     public void add(int index, E element) throws NoSuchElementException {
         if (index < 0 || index > size) {
@@ -80,6 +80,8 @@ public class MyLinkedList<E extends Comparable<E>>
                 temp.setPrev(temp);
                 temp = temp.getNext();
             }
+            head.setPrev(null); //To make sure the Head doesn't have a 
+            //prev pointer due to the for loop
             Node<E> newNode = new Node<E>(element);
             newNode.setNext(temp.getNext());
             temp.setNext(newNode);
@@ -111,8 +113,12 @@ public class MyLinkedList<E extends Comparable<E>>
         } else {
             Node<E> temp = head;
             head = head.getNext();
+            if (size > 1) {
+                head.setPrev(null);
+            } else {
+                tail = null;
+            }
             temp.setNext(null);
-            head.setPrev(null);
             size--;
             return temp.getData();
         }
@@ -123,7 +129,7 @@ public class MyLinkedList<E extends Comparable<E>>
      *
      * @param index The index of the element to remove.
      * @return The removed element.
-     * @throws IndexOutOfBoundsException if the index is out of bounds.
+     * @throws NoSuchElementException if the index is out of bounds.
      */
     public E remove(int index) throws NoSuchElementException {
         if (index < 0 || index >= size) {
@@ -139,10 +145,11 @@ public class MyLinkedList<E extends Comparable<E>>
             }
             removedNode = pointer.getNext();
             pointer.setNext(removedNode.getNext());
-            pointer.getNext().setPrev(pointer);
             if (pointer.getNext() == null) {
                 tail = pointer;
-            }
+            } else {
+                removedNode.getNext().setPrev(pointer);
+            }   
             size--;
             return removedNode.getData();
         }
@@ -169,9 +176,6 @@ public class MyLinkedList<E extends Comparable<E>>
         Node<E> previous = null;
         while (current != null && !current.getData().equals(element)) {
             E temp = current.getData();
-            System.out.println(temp.equals(element));
-            System.out.println(temp);
-            System.out.println(element);
             previous = current;
             current = current.getNext();
         }
@@ -180,7 +184,13 @@ public class MyLinkedList<E extends Comparable<E>>
             return null;
         }
     
-        previous.setNext(current.getNext());
+        if (current.getNext() == null) {
+            previous.setNext(null);
+            tail = previous;
+        } else {
+            previous.setNext(current.getNext());
+            current.getNext().setPrev(previous);
+        }
         size--;
         return current.getData();
     }
@@ -205,7 +215,7 @@ public class MyLinkedList<E extends Comparable<E>>
      *
      * @param index The index of the element to retrieve.
      * @return The element at the specified index.
-     * @throws IndexOutOfBoundsException if the index is out of bounds.
+     * @throws NoSuchElementException if the index is out of bounds.
      */
     public E get(int index) throws NoSuchElementException {
         if (index < 0 || index > size) {
@@ -224,7 +234,7 @@ public class MyLinkedList<E extends Comparable<E>>
      *
      * @param index The index of the element to set.
      * @param element The new element to set.
-     * @throws IndexOutOfBoundsException if the index is out of bounds.
+     * @throws NoSuchElementException if the index is out of bounds.
      */
     public void set(int index, E element) throws NoSuchElementException {
         if (index < 0 || index >= size) {
