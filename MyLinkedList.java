@@ -29,14 +29,14 @@ public class MyLinkedList<E extends Comparable<E>>
      * @return node located at index
      */
     public Node<E> traverse(int index) {
-        if (index < (size / 2)){
+        if (index < (size / 2)){// if the index is less than the half way point
             Node<E> pointer = head;
 
             for (int i = 0; i < index; i++) {
                 pointer = pointer.getNext();
             }
             return pointer;
-        } else {
+        } else { // if the index is beyond the half way point
             Node<E> pointer = tail;
 
             for (int i = size - 1; i > index; i--) {
