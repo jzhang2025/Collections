@@ -23,16 +23,40 @@ public class MyLinkedList<E extends Comparable<E>>
     }
 
     /**
+     * Helper method to help traverse list faster
+     *
+     * @param index index of the returned node
+     * @return node located at index
+     */
+    public Node<E> traverse(int index) {
+        if (index < (size / 2)){
+            Node<E> pointer = head;
+
+            for (int i = 0; i < index; i++) {
+                pointer = pointer.getNext();
+            }
+            return pointer;
+        } else {
+            Node<E> pointer = tail;
+
+            for (int i = size - 1; i > index; i--) {
+                pointer = pointer.getPrev();
+            }
+            return pointer;
+        }
+    }
+    
+    /**
      * Adds a new element at the head of the linked list.
      *
      * @param element The element to add.
      */
     public void addHead(E element) {
         Node<E> newNode = new Node<>(element);
-        if (head == null) { 
+        if (head == null) { //empty use case
             head = newNode;
             tail = newNode;
-        } else {
+        } else { //not empty use case
             newNode.setNext(head);
             head.setPrev(newNode);
             head = newNode;
@@ -47,9 +71,9 @@ public class MyLinkedList<E extends Comparable<E>>
      */
     public void addTail(E element) {
         
-        if (head == null) {
+        if (head == null) { //empty use case
             addHead(element);
-        } else {
+        } else { // not empty use case
             Node<E> newNode = new Node<E>(element);
             tail.setNext(newNode);
             newNode.setPrev(tail);
@@ -66,15 +90,15 @@ public class MyLinkedList<E extends Comparable<E>>
      * @throws NoSuchElementException if the index is out of bounds.
      */
     public void add(int index, E element) throws NoSuchElementException {
-        if (index < 0 || index > size) {
+        if (index < 0 || index > size) { // validation
             throw new NoSuchElementException();
         }
     
-        if (index == 0) {
+        if (index == 0) { // if head use case 
             addHead(element);
-        } else if (index == size) {
+        } else if (index == size) { //if tail use case
             addTail(element);
-        } else {
+        } else { // in between use case
             Node<E> temp = head;
             for (int i = 0; i < index - 1; i++) {
                 temp.setPrev(temp);
@@ -102,20 +126,35 @@ public class MyLinkedList<E extends Comparable<E>>
     }
     
     /**
+     * Inserts an element into the list in sorted order 
+     *
+     * @param element The element to insert into the list.
+     */
+    public void insertSorted(E element) {
+        Node<E> cur = head;
+        int index = 0;
+        while (cur != null && element.compareTo(cur.getData()) > 0) {
+            cur = cur.getNext();
+            index++;
+        }
+        add(index, element);
+    }
+    
+    /**
      * Removes and returns the element at the head of the linked list.
      *
      * @return The element at the head of the linked list.
      * @throws NoSuchElementException if the linked list is empty.
      */
     public E removeHead() throws NoSuchElementException {
-        if (head == null) {
+        if (head == null) { // Validation
             throw new NoSuchElementException();
         } else {
             Node<E> temp = head;
             head = head.getNext();
-            if (size > 1) {
+            if (size > 1) { // more than 1 element use case
                 head.setPrev(null);
-            } else {
+            } else { /// only 1 element use case
                 tail = null;
             }
             temp.setNext(null);
@@ -132,12 +171,12 @@ public class MyLinkedList<E extends Comparable<E>>
      * @throws NoSuchElementException if the index is out of bounds.
      */
     public E remove(int index) throws NoSuchElementException {
-        if (index < 0 || index >= size) {
+        if (index < 0 || index >= size) { // validation
             throw new NoSuchElementException();
         }
-        if (index == 0) {
+        if (index == 0) { // if head use case
             return removeHead();        
-        } else {
+        } else { 
             Node<E> pointer = head;
             Node<E> removedNode;
             for (int i = 0; i < index - 1; i++) {
@@ -145,9 +184,9 @@ public class MyLinkedList<E extends Comparable<E>>
             }
             removedNode = pointer.getNext();
             pointer.setNext(removedNode.getNext());
-            if (pointer.getNext() == null) {
+            if (pointer.getNext() == null) { // if tail use case
                 tail = pointer;
-            } else {
+            } else { // in between use case
                 removedNode.getNext().setPrev(pointer);
             }   
             size--;
@@ -164,11 +203,11 @@ public class MyLinkedList<E extends Comparable<E>>
      * @throws NoSuchElementException if the element is not found in the list.
      */
     public E remove(E element) {
-        if (isEmpty()) {
+        if (isEmpty()) { // if empty use case
             return null;
         }
     
-        if (head.getData().equals(element)) {
+        if (head.getData().equals(element)) { // if head use case
             return removeHead();
         }
     
@@ -180,7 +219,7 @@ public class MyLinkedList<E extends Comparable<E>>
             current = current.getNext();
         }
     
-        if (current == null) {
+        if (current == null) { // if not found use case
             return null;
         }
     
@@ -203,7 +242,7 @@ public class MyLinkedList<E extends Comparable<E>>
      * @throws NoSuchElementException if the linked list is empty.
      */
     public E getHead() throws NoSuchElementException {
-        if (head == null) {
+        if (head == null) { // validation
             throw new NoSuchElementException();
         } else {
             return head.getData();
@@ -218,7 +257,7 @@ public class MyLinkedList<E extends Comparable<E>>
      * @throws NoSuchElementException if the index is out of bounds.
      */
     public E get(int index) throws NoSuchElementException {
-        if (index < 0 || index > size) {
+        if (index < 0 || index > size) { // validation
             throw new NoSuchElementException();
         }
         Node<E> temp = head;
@@ -226,8 +265,7 @@ public class MyLinkedList<E extends Comparable<E>>
             temp = temp.getNext();
         }
         return temp.getData();
-    }
-    
+    }   
     
     /**
      * Sets the element at the specified index to the given element.
@@ -237,7 +275,7 @@ public class MyLinkedList<E extends Comparable<E>>
      * @throws NoSuchElementException if the index is out of bounds.
      */
     public void set(int index, E element) throws NoSuchElementException {
-        if (index < 0 || index >= size) {
+        if (index < 0 || index >= size) { // validation
             throw new NoSuchElementException();
         }
         Node<E> temp = head;
@@ -245,22 +283,6 @@ public class MyLinkedList<E extends Comparable<E>>
             temp = temp.getNext();
         }
         temp.setData(element);
-    }
-    
-    
-    /**
-     * Inserts an element into the list in sorted order 
-     *
-     * @param element The element to insert into the list.
-     */
-    public void insertSorted(E element) {
-        Node<E> cur = head;
-        int index = 0;
-        while (cur != null && element.compareTo(cur.getData()) > 0) {
-            cur = cur.getNext();
-            index++;
-        }
-        add(index, element);
     }
     
     /**
