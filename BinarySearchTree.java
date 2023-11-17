@@ -24,25 +24,26 @@ public class BinarySearchTree<E extends Comparable<E>>
         } else {
             root.insert(element);
         }
+        size++;
     }
     
-    // public E search(E element) {
-        // return; 
-    // }
+    public E search(E element) {
+        return root.search(element);
+    }
     
-    // public E getMin() {
-        
-    // }
+    public E getMin() {
+        return root.getMin();
+    }
     
-    // public E getMax() {
-        
-    // }
+    public E getMax() {
+        return root.getMax();
+    }
     
-    // public boolean isEmpty() {
-        // return (root == null);
-    // }
+    public boolean isEmpty() {
+        return (root == null);
+    }
     
-    // public int size() {
-        // return size;
-    // }
+    public int size() {
+        return size;
+    }
 }
