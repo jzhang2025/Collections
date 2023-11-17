@@ -89,4 +89,12 @@ public class BinarySearchTree<E extends Comparable<E>>
     public int size() {
         return size;
     }
+    
+    public String toString() {
+        return root.toString();
+    }
+    
+    // public int getDepth() {
+        // return root.getDepth();
+    // }
 }

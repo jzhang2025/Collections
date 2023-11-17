@@ -16,6 +16,10 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
         data = element;
     }
     
+    public E getData() {
+        return data;
+    }
+    
     /**
      * Inserts a new node into the tree and places it based off the integer 
      * value. Checks if the element provided is less than or more than the root. 
@@ -80,5 +84,24 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
         } else {
             return right.getMax();
         }
+    }
+    
+    public String toString() {
+        String listString = "";
+        if (left != null) {
+            listString += left.toString() + ", ";
+        } 
+        listString += data; 
+        if (right != null) {
+            listString += ", " + right.toString();
+        }
+        return listString;
+    }
+    
+    public int getDepth() {
+        if (left != null) {
+            
+        }
+        
     }
 }
