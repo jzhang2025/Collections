@@ -1,9 +1,9 @@
 
 /**
- * Write a description of class BSTNode here.
+ * Represents a Binary Search Tree Node with the methods needed to make it work
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Joshua Zhang
+ * @version November 17 2023
  */
 public class BinarySearchTreeNode<E extends Comparable<E>> 
 {
@@ -14,23 +14,6 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
     public BinarySearchTreeNode(E element)
     {
         data = element;
-    }
-
-    public E getData()
-    {
-        return data;
-    }
-    
-    public void setData(E element) {
-        data = element;
-    }
-    
-    public BinarySearchTreeNode<E> getLeft() {
-        return left;
-    }
-    
-    public BinarySearchTreeNode<E> getRight() {
-        return right;
     }
     
     public void insert(E element) {
@@ -69,7 +52,7 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
     }
 
     public E getMax() {
-        if (right == null) { // base case
+        if (right == null) { 
             return data;
         } else {
             return right.getMax();
