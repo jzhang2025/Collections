@@ -90,11 +90,43 @@ public class BinarySearchTree<E extends Comparable<E>>
         return size;
     }
     
+    /**
+     * Returns the tree in string format from smallest to largest node
+     *
+     * @return the nodes in the tree from smallest to largest in string form
+     */
+    
     public String toString() {
         return root.toString();
     }
     
-    // public int getDepth() {
-        // return root.getDepth();
-    // }
+    /**
+     * Returns the depth of the binary tree
+     *
+     * @return the depth of the tree
+     */
+    
+    public int getDepth() {
+        return root.getDepth();
+    }
+    
+    /**
+     * Removes and returns the given element from the binary tree. If the 
+     * element is not in the tree the method returns null
+     *
+     * @return the removed node or null if the given element is not in the 
+     * binary tree
+     */
+    
+    public E remove(E element) {
+        if (root == null) {
+            return null;
+        } else if (search(element) == null) {
+            return null;
+        }
+        E removeElement = root.search(element); 
+        root = root.remove(element);
+        size--;
+        return removeElement;
+    }
 }

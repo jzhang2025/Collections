@@ -86,6 +86,12 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
         }
     }
     
+    /**
+     * Returns the tree in string format from smallest to largest node
+     *
+     * @return the nodes in the tree from smallest to largest in string form
+     */
+    
     public String toString() {
         String listString = "";
         if (left != null) {
@@ -98,10 +104,56 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
         return listString;
     }
     
+    /**
+     * Returns the depth of the binary tree
+     *
+     * @return the depth of the tree
+     */
+    
     public int getDepth() {
-        if (left != null) {
-            
+        int depth = 1; 
+        if (left == null && right == null) {
+            return depth;
+        } else if (left != null && (right == null 
+        || left.getDepth() > right.getDepth())) {
+            return depth + left.getDepth();
+        } else {
+            return depth + right.getDepth();
         }
+            
+    }
         
+    /**
+     * Removes and returns the given element from the binary tree. If the 
+     * element is not in the tree the method returns null
+     *
+     * @return the removed node or null if the given element is not in the 
+     * binary tree
+     */
+    
+    public BinarySearchTreeNode remove(E element) {
+         if (element.compareTo(data) < 0) {
+            if (left == null) {
+                return this;
+            } else {
+                left = left.remove(element);
+                return this;
+            }
+        } else if (element.compareTo(data) > 0) {
+            if (right == null) {
+                return this;
+            } else {
+                right = right.remove(element);
+                return this;
+            }
+        } else {
+            if (left == null && right == null) {
+                return null;
+            } else if (left != null && right == null) {
+                return left;
+            } else {
+                return right;
+            }
+        }
     }
 }
