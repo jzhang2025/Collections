@@ -157,6 +157,17 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
         }
     }
     
+    public BinarySearchTreeNode removeMin(E element) {
+        if (left == null && right == null) {
+            return null;
+        } else if (left == null && right != null) {
+            return this; 
+        } else {
+            left = left.remove(left.getMin());
+            return this;
+        }
+    }
+    
     /**     * Prints elements as stored in the tree
      *
      * @param maxElementWidth The maximum space allowed for the string form
@@ -235,7 +246,7 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
 
     // build array of element strings
     private void printTree(String[] elements, int nodeNum, int maxElementWidth) {
-        elements[nodeNum] = elements.toString();
+        elements[nodeNum] = data.toString();
         if (elements[nodeNum].length() > maxElementWidth) {
             elements[nodeNum] = elements[nodeNum].substring(0, maxElementWidth);
         }

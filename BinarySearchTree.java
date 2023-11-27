@@ -110,6 +110,10 @@ public class BinarySearchTree<E extends Comparable<E>>
         return root.getDepth();
     }
     
+    public void printTree() {
+        root.printTree(2);
+    }
+    
     /**
      * Removes and returns the given element from the binary tree. If the 
      * element is not in the tree the method returns null
@@ -126,6 +130,16 @@ public class BinarySearchTree<E extends Comparable<E>>
         }
         E removeElement = root.search(element); 
         root = root.remove(element);
+        size--;
+        return removeElement;
+    }
+    
+    public E removeMin() {
+        if (root == null) {
+            return null;
+        }
+        E removeElement = root.search(root.getMin()); 
+        root = root.remove(root.getMin());
         size--;
         return removeElement;
     }
