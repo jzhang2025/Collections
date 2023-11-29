@@ -111,7 +111,7 @@ public class BinarySearchTree<E extends Comparable<E>>
     }
     
     public void printTree() {
-        root.printTree(2);
+        root.printTree(3);
     }
     
     /**
@@ -128,18 +128,28 @@ public class BinarySearchTree<E extends Comparable<E>>
         } else if (search(element) == null) {
             return null;
         }
-        E removeElement = root.search(element); 
+        E removed = root.search(element); 
         root = root.remove(element);
+        size--;
+        return removed;
+    }
+    
+    public E removeMin() {
+        if (isEmpty()) {
+            return null;
+        }
+        E removeElement = root.getMin(); 
+        root = root.removeMin();
         size--;
         return removeElement;
     }
     
-    public E removeMin() {
-        if (root == null) {
-            return null;
+    public E removeMax() {
+        if (isEmpty()) {
+            return null;    
         }
-        E removeElement = root.search(root.getMin()); 
-        root = root.remove(root.getMin());
+        E removeElement = root.getMax(); 
+        root = root.removeMax();
         size--;
         return removeElement;
     }

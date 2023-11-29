@@ -131,8 +131,8 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
      * binary tree
      */
     
-    public BinarySearchTreeNode remove(E element) {
-         if (element.compareTo(data) < 0) {
+    public BinarySearchTreeNode<E> remove(E element) {
+        if (element.compareTo(data) < 0) {
             if (left == null) {
                 return this;
             } else {
@@ -151,19 +151,37 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
                 return null;
             } else if (left != null && right == null) {
                 return left;
-            } else {
+            } else if (left == null && right != null) {
                 return right;
+            } else {
+                E replaceData = left.getMax();
+                data = replaceData;
+                left = left.remove(replaceData);
+                return this;
             }
         }
     }
     
-    public BinarySearchTreeNode removeMin(E element) {
+    public BinarySearchTreeNode removeMin() {
         if (left == null && right == null) {
             return null;
         } else if (left == null && right != null) {
-            return this; 
+            right.removeMin(); 
+            return right;
         } else {
-            left = left.remove(left.getMin());
+            left = left.removeMin();
+            return this;
+        }
+    }
+    
+    public BinarySearchTreeNode removeMax() {
+        if (left == null && right == null) {
+            return null;
+        } else if (left != null && right == null) {
+            left.removeMax();
+            return left; 
+        } else {
+            right = right.removeMax();
             return this;
         }
     }
@@ -258,3 +276,4 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
         }
     }
 }
+
