@@ -162,11 +162,15 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
         }
     }
     
+    /**
+     * Removes and returns the smallest element in the Binary Search Tree
+     *
+     * @return the removed node 
+     */ 
     public BinarySearchTreeNode removeMin() {
         if (left == null && right == null) {
             return null;
         } else if (left == null && right != null) {
-            right.removeMin(); 
             return right;
         } else {
             left = left.removeMin();
@@ -174,11 +178,15 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
         }
     }
     
+    /**
+     * Removes and returns the largest element in the Binary Search Tree
+     *
+     * @return the removed node 
+     */
     public BinarySearchTreeNode removeMax() {
         if (left == null && right == null) {
             return null;
         } else if (left != null && right == null) {
-            left.removeMax();
             return left; 
         } else {
             right = right.removeMax();

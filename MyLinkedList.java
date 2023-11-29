@@ -28,7 +28,7 @@ public class MyLinkedList<E extends Comparable<E>>
      * @param index index of the returned node
      * @return node located at index
      */
-    public Node<E> traverse(int index) {
+    private Node<E> traverse(int index) {
         if (index < (size / 2)){// if the index is less than the half way point
             Node<E> pointer = head;
 
