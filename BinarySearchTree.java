@@ -134,6 +134,12 @@ public class BinarySearchTree<E extends Comparable<E>>
         return removed;
     }
     
+    /**
+     * Removes and returns the smallest element in the Binary Search Tree
+     *
+     * @return the removed node 
+     */ 
+    
     public E removeMin() {
         if (isEmpty()) {
             return null;
@@ -143,6 +149,12 @@ public class BinarySearchTree<E extends Comparable<E>>
         size--;
         return removeElement;
     }
+    
+    /**
+     * Removes and returns the largest element in the Binary Search Tree
+     *
+     * @return the removed node 
+     */
     
     public E removeMax() {
         if (isEmpty()) {
