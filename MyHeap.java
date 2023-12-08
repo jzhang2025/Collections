@@ -1,10 +1,11 @@
-
+import java.util.Arrays;
 /**
- * Write a description of class MyHeap here.
+ * Creates a min heap data structure 
  *
- * @author (your name)
+ * @author Joshua Zhang 
  * @version (a version number or a date)
  */
+
 public class MyHeap <E extends Comparable<E>>
 {
     // instance variables - replace the example below with your own
@@ -28,6 +29,33 @@ public class MyHeap <E extends Comparable<E>>
      */
     public void add(E element)
     {
-        
+        lastNode++;
+        elemArray[lastNode] = element;
+        if (lastNode == 0) {
+            return;
+        } else {
+            int child = lastNode;
+            int parent = (child-1)/2;
+            while (child != 0 && elemArray[child].compareTo(elemArray[parent])) {
+                
+            }
+            
+        }
+    }
+
+    public E getMin() {
+        return elemArray[0];
+    }
+    
+    public boolean isEmpty() {
+        return (lastNode == -1);
+    }
+    
+    public int size() {
+        return (lastNode += 1);
+    }
+    
+    public String toString() {
+        return Arrays.toString(elemArray);
     }
 }
