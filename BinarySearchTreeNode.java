@@ -112,6 +112,7 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
     
     public int getDepth() {
         int depth = 1; 
+
         if (left == null && right == null) {
             return depth;
         } else if (left != null && (right == null 

@@ -41,6 +41,9 @@ public class BinarySearchTree<E extends Comparable<E>>
      * element is not in the tree
      */
     public E search(E element) {
+        if (root == null) {
+            return null;
+        }
         return root.search(element);
     }
     
@@ -97,6 +100,9 @@ public class BinarySearchTree<E extends Comparable<E>>
      */
     
     public String toString() {
+        if (root == null) {
+            return null;
+        }
         return root.toString();
     }
     
@@ -107,6 +113,9 @@ public class BinarySearchTree<E extends Comparable<E>>
      */
     
     public int getDepth() {
+        if (root == null) {
+            return 0;
+        }
         return root.getDepth();
     }
     
