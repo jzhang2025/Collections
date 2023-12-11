@@ -8,7 +8,6 @@ import java.util.Arrays;
 
 public class MyHeap <E extends Comparable<E>>
 {
-    // instance variables - replace the example below with your own
     private E[] elemArray;
     private int lastNode;
 
@@ -21,12 +20,6 @@ public class MyHeap <E extends Comparable<E>>
         lastNode = -1;
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
     public void add(E element)
     {
         lastNode++;
@@ -36,13 +29,17 @@ public class MyHeap <E extends Comparable<E>>
         } else {
             int child = lastNode;
             int parent = (child-1)/2;
-            while (child != 0 && elemArray[child].compareTo(elemArray[parent])) {
-                
+            elemArray[lastNode] = element;
+            while (child != 0 && (element.compareTo(elemArray[parent]) < 0)) {
+                E temp = elemArray[parent];
+                elemArray[parent] = element;
+                elemArray[child] = temp;
+                child = parent;
+                parent = (child - 1)/2;
             }
-            
         }
     }
-
+            
     public E getMin() {
         return elemArray[0];
     }
