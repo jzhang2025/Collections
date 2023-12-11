@@ -15,11 +15,7 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
     {
         data = element;
     }
-    
-    public E getData() {
-        return data;
-    }
-    
+   
     /**
      * Inserts a new node into the tree and places it based off the integer 
      * value. Checks if the element provided is less than or more than the root. 
@@ -28,19 +24,19 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
      */
     
     public void insert(E element) {
-    if (element.compareTo(data) < 0) {
-        if (left == null) {
-            left = new BinarySearchTreeNode<>(element);
-        } else {
-            left.insert(element); 
+        if (element.compareTo(data) < 0) {
+            if (left == null) {
+                left = new BinarySearchTreeNode<>(element);
+            } else {
+                left.insert(element); 
+            }
+        } else if (element.compareTo(data) > 0) {
+            if (right == null) {
+                right = new BinarySearchTreeNode<>(element);
+            } else {
+                right.insert(element); 
+            }
         }
-    } else if (element.compareTo(data) > 0) {
-        if (right == null) {
-            right = new BinarySearchTreeNode<>(element);
-        } else {
-            right.insert(element); 
-        }
-    }
     }
     
     /**
@@ -50,14 +46,14 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
      * element is not in the tree
      */
     public E search(E element) {
-    if (element.compareTo(data) == 0) {
-        return data; 
-    } else if (element.compareTo(data) < 0 && left != null) {
-        return left.search(element); 
-    } else if (element.compareTo(data) > 0 && right != null) {
-        return right.search(element); 
-    }
-    return null;    
+        if (element.compareTo(data) == 0) {
+            return data; 
+        } else if (element.compareTo(data) < 0 && left != null) {
+            return left.search(element); 
+        } else if (element.compareTo(data) > 0 && right != null) {
+            return right.search(element); 
+        }
+        return null;    
     }
     
     /**
