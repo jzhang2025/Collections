@@ -12,6 +12,11 @@ public class MyHeapTest
         MyHeap<Integer> tree = new MyHeap<Integer>();
         tree.add(5);
         tree.add(2);
-        System.out.println(tree.isEmpty());
+        tree.add(3);
+        tree.add(8);
+        tree.add(4);
+        tree.add(19);
+        tree.add(1);
+        System.out.println(tree.toString());
     }
 }
