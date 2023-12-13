@@ -44,13 +44,40 @@ public class MyHeap <E extends Comparable<E>>
     }
     
     public E removeMin() {
-        E removeNode = getMin();
         if (lastNode == -1) {
-            return null;
-        } else {
-            return removeNode;
+            return null; 
         }
+        E minElement = elemArray[0]; 
+        elemArray[0] = elemArray[lastNode];
+        elemArray[lastNode] = null;
+        lastNode--;
+        int parent = 0;
+        boolean heapPropertyViolated = true;
+    
+        while (heapPropertyViolated == true) {
+            int leftChild = 2 * parent + 1;
+            int rightChild = 2 * parent + 2;
+            int smallest = parent;
+            if (leftChild <= lastNode && elemArray[leftChild].compareTo(elemArray[smallest]) < 0) {
+                smallest = leftChild;
+            }
+            if (rightChild <= lastNode && elemArray[rightChild].compareTo(elemArray[smallest]) < 0) {
+                smallest = rightChild;
+            }
+    
+            if (smallest == parent) {
+                heapPropertyViolated = false;
+            } else {
+                E temp = elemArray[parent];
+                elemArray[parent] = elemArray[smallest];
+                elemArray[smallest] = temp;
+                parent = smallest;
+            }
+        }
+    
+        return getMin();
     }
+
     
     public boolean isEmpty() {
         return (lastNode == -1);
