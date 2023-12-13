@@ -10,16 +10,19 @@ public class MyHeap <E extends Comparable<E>>
 {
     private E[] elemArray;
     private int lastNode;
-
-    /**
-     * Constructor for objects of class MyHeap
-     */
+    
     public MyHeap()
     {
         elemArray = (E[]) new Comparable[16];
         lastNode = -1;
     }
 
+    /**
+     * Inserts a new node into the tree and places it based off the integer 
+     * value. 
+     *
+     * @param element The element to add.
+     */
     public void add(E element)
     {
         lastNode++;
@@ -39,10 +42,22 @@ public class MyHeap <E extends Comparable<E>>
         }
     }
             
+    /**
+     * Gets and returns the minimum value in the heap 
+     *
+     * @returns Minimum value in heap
+     */
     public E getMin() {
         return elemArray[0];
     }
     
+    /**
+     * Removes and returns the smallest element in the heap. In addition, 
+     * the method fixes the heap so that the root is replaced and the heap 
+     * 
+     *
+     * @param element The element to add.
+     */
     public E removeMin() {
         if (lastNode == -1) {
             return null; 
