@@ -17,7 +17,7 @@ public class MyHeapTest
         tree.add(4);
         tree.add(19);
         tree.add(1);
-        tree.removeMin();
+        System.out.println(tree.removeMin());
         System.out.println(tree.toString());
     }
 }

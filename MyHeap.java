@@ -75,7 +75,7 @@ public class MyHeap <E extends Comparable<E>>
             }
         }
     
-        return getMin();
+        return minElement;
     }
 
     
