@@ -56,7 +56,7 @@ public class MyHeap <E extends Comparable<E>>
      * the method fixes the heap so that the root is replaced and the heap 
      * 
      *
-     * @param element The element to add.
+     * @return the smallest element in the heap
      */
     public E removeMin() {
         if (lastNode == -1) {
@@ -93,11 +93,22 @@ public class MyHeap <E extends Comparable<E>>
         return minElement;
     }
 
-    
+    /**
+     * Checks if the tree is empty or not
+     * 
+     *
+     * @return true if the tree is empty. False if it is not empty
+     */
     public boolean isEmpty() {
         return (lastNode == -1);
     }
     
+    /**
+     * Returns the amount of elements in the tree
+     * 
+     *
+     * @return the number of elements
+     */
     public int size() {
         return (lastNode += 1);
     }
@@ -187,6 +198,11 @@ public class MyHeap <E extends Comparable<E>>
         }
     } 
     
+    /**
+     * Returns the elements in the heap in an array form. 
+     *
+     * @return the elements in the heap
+     */
     public String toString() {
         return Arrays.toString(elemArray);
     }
